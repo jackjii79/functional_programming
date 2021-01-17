@@ -12,7 +12,7 @@ services:
     volumes:
       - "../fp-scala-homework:/fp-scala-homework"
     working_dir: /fp-scala-homework
-    command: 'sbt compile test'
+    command: 'sbt test'
 
   java-machine:
     image: adoptopenjdk/openjdk11
