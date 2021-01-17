@@ -1,0 +1,25 @@
+version: '3.5'
+networks:
+  scala-java-demo:
+    name: scala-java-demo-net
+    driver: bridge
+
+services:
+  scala-machine:
+    image: hseeberger/scala-sbt:11.0.5_1.3.6_2.12.10
+    networks:
+      - scala-java-demo
+    volumes:
+      - "../fp-scala-homework:/fp-scala-homework"
+    working_dir: /fp-scala-homework
+    command: 'sbt compile test'
+
+  java-machine:
+    image: adoptopenjdk/openjdk11
+    networks:
+      - scala-java-demo
+    volumes:
+      - "../fp-java-homework:/fp-java-homework"
+    working_dir: /fp-java-homework
+    command: './gradlew clean test'
+
